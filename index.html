@@ -1,0 +1,2244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Typing Master - Smooth Animations</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, rgba(232, 235, 51, 0.815), #00ff11, #0400ff);
+            color: #fff;
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+            opacity: 0;
+            animation: fadeIn 1s ease forwards;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            transform: translateY(20px);
+            animation: slideUp 0.8s ease forwards;
+        }
+        
+        @keyframes slideUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+            margin-bottom: 25px;
+            animation: fadeIn 1s ease 0.3s forwards;
+            opacity: 0;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #a5d6a7;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .logo:hover {
+            transform: scale(1.05);
+            color: #c8e6c9;
+        }
+        
+        .logo i {
+            font-size: 32px;
+            transition: transform 0.5s ease;
+        }
+        
+        .logo:hover i {
+            transform: rotate(10deg);
+        }
+        
+        .nav-buttons {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            transform: translateY(0);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-primary {
+            background-color: #a74cafbe;
+            color: white;
+        }
+        
+        .btn-secondary {
+            background-color: transparent;
+            border: 2px solid #a74cafbe;
+            color: whitesmoke;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 14px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn:active {
+            transform: translateY(1px);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        .progress-section {
+            background-color: rgba(255, 255, 255, 0.15);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            animation: fadeIn 1s ease 0.4s forwards;
+            opacity: 0;
+        }
+        
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .progress-title {
+            font-size: 22px;
+            font-weight: bold;
+        }
+        
+        .progress-bar {
+            height: 25px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 15px;
+            position: relative;
+            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        
+        .progress-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #a74cafbe, #8bc34a);
+            border-radius: 12px;
+            transition: width 1s cubic-bezier(0.22, 0.61, 0.36, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .progress-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background-image: linear-gradient(
+                -45deg, 
+                rgba(255, 255, 255, 0.2) 25%, 
+                transparent 25%, 
+                transparent 50%, 
+                rgba(255, 255, 255, 0.2) 50%, 
+                rgba(255, 255, 255, 0.2) 75%, 
+                transparent 75%, 
+                transparent
+            );
+            z-index: 1;
+            background-size: 50px 50px;
+            animation: move 2s linear infinite;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        @keyframes move {
+            0% { background-position: 0 0; }
+            100% { background-position: 50px 50px; }
+        }
+        
+        .level {
+            font-size: 18px;
+            color: #a5d6a7;
+            margin-bottom: 5px;
+        }
+        
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+            animation: fadeIn 1s ease 0.5s forwards;
+            opacity: 0;
+        }
+        
+        .tab {
+            padding: 12px 25px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            transform: translateY(0);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .tab:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 14px rgba(0, 0, 0, 0.2);
+            background-color: rgba(255, 255, 255, 0.15);
+        }
+        
+        .tab.active {
+            background-color: #a74cafbe;
+            box-shadow: 0 7px 14px rgba(0, 0, 0, 0.2);
+            transform: translateY(-3px);
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(76, 175, 80, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(76, 175, 80, 0); }
+        }
+        
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease forwards;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .modules {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .module {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            transform: translateY(0);
+            animation: fadeIn 1s ease 0.6s forwards;
+            opacity: 0;
+        }
+        
+        .module:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        .module:nth-child(1) { animation-delay: 0.6s; }
+        .module:nth-child(2) { animation-delay: 0.7s; }
+        .module:nth-child(3) { animation-delay: 0.8s; }
+        
+        .module-title {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: #708371;
+            border-bottom: 2px solid #a74cafbe;
+            padding-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .lesson-list {
+            list-style-type: none;
+        }
+        
+        .lesson-item {
+            padding: 12px 15px;
+            margin-bottom: 10px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+            transform: translateX(0);
+            animation: slideInRight 0.5s ease forwards;
+            opacity: 0;
+        }
+        
+        @keyframes slideInRight {
+            from { transform: translateX(20px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        .lesson-item:nth-child(1) { animation-delay: 0.1s; }
+        .lesson-item:nth-child(2) { animation-delay: 0.2s; }
+        .lesson-item:nth-child(3) { animation-delay: 0.3s; }
+        .lesson-item:nth-child(4) { animation-delay: 0.4s; }
+        .lesson-item:nth-child(5) { animation-delay: 0.5s; }
+        
+        .lesson-item:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: translateX(5px);
+        }
+        
+        .start-btn {
+            padding: 6px 15px;
+            background-color: #a74cafbe;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            transform: scale(1);
+        }
+        
+        .start-btn:hover {
+            transform: scale(1.1);
+            background-color: #f6fa00be;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+            animation: fadeIn 1s ease 0.9s forwards;
+            opacity: 0;
+        }
+        
+        .stat-card {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.3s ease;
+            transform: translateY(0);
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .stat-value {
+            font-size: 32px;
+            font-weight: bold;
+            color: #a74cafbe;
+            margin: 10px 0;
+            transition: all 0.5s ease;
+        }
+        
+        .stat-card:hover .stat-value {
+            transform: scale(1.2);
+            color: #66bb6a;
+        }
+        
+        .stat-label {
+            font-size: 16px;
+            color: #a5d6a7;
+        }
+        
+        .problem-keys {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .key {
+            padding: 10px 15px;
+            background-color: #ff5722;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            transform: scale(1);
+            animation: bounce 1s infinite alternate;
+        }
+        
+        @keyframes bounce {
+            from { transform: translateY(0); }
+            to { transform: translateY(-5px); }
+        }
+        
+        .key:nth-child(1) { animation-delay: 0.1s; }
+        .key:nth-child(2) { animation-delay: 0.2s; }
+        .key:nth-child(3) { animation-delay: 0.3s; }
+        .key:nth-child(4) { animation-delay: 0.4s; }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid rgba(255, 255, 255, 0.2);
+            color: #a5d6a7;
+            animation: fadeIn 1s ease 1s forwards;
+            opacity: 0;
+        }
+        
+        /* Typing Lesson Styles */
+        .typing-lesson {
+            background-color: rgba(255, 255, 255, 0.15);
+            padding: 25px;
+            border-radius: 10px;
+            margin: 20px 0;
+            display: none;
+            animation: fadeIn 0.5s ease forwards;
+        }
+        
+        .lesson-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .lesson-title {
+            font-size: 24px;
+            color: #a5d6a7;
+            animation: pulse 2s infinite;
+        }
+        
+        .lesson-stats {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .stat {
+            text-align: center;
+        }
+        
+        .stat span {
+            display: block;
+            font-size: 18px;
+            font-weight: bold;
+            color: #a74cafbe;
+            transition: all 0.3s ease;
+        }
+        
+        .stat span.value-updated {
+            animation: pop 0.5s ease;
+        }
+        
+        @keyframes pop {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+            100% { transform: scale(1); }
+        }
+        
+        .text-display {
+            background-color: rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            border-radius: 8px;
+            font-size: 22px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            min-height: 150px;
+            transition: all 0.3s ease;
+        }
+        
+        .current-word {
+            background-color: #a74cafbe;
+            padding: 2px 5px;
+            border-radius: 4px;
+            animation: highlight 1.5s infinite alternate;
+        }
+        
+        @keyframes highlight {
+            from { background-color: #a74cafbe; }
+            to { background-color: #66bb6a; }
+        }
+        
+        .input-area {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        #typing-input {
+            flex: 1;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            background-color: rgba(255, 255, 255, 0.9);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        #typing-input:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.5);
+            transform: translateY(-2px);
+        }
+        
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .result {
+            text-align: center;
+            margin-top: 20px;
+            display: none;
+            animation: fadeIn 0.5s ease forwards;
+        }
+        
+        .keyboard {
+            margin-top: 30px;
+            background-color: rgba(0, 0, 0, 0.3);
+            padding: 15px;
+            border-radius: 10px;
+            animation: slideInUp 0.5s ease forwards;
+        }
+        
+        @keyframes slideInUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        .keyboard-row {
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+            margin-bottom: 5px;
+        }
+        
+        .keyboard-key {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #333;
+            color: white;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: all 0.1s ease;
+            box-shadow: 0 4px 0 #222;
+        }
+        
+        .keyboard-key:active {
+            transform: translateY(4px);
+            box-shadow: 0 0 0 #222;
+        }
+        
+        .keyboard-key.space {
+            width: 300px;
+        }
+        
+        .keyboard-key.shift {
+            width: 100px;
+            background-color: #666;
+        }
+        
+        .keyboard-key.active {
+            background-color: #a74cafbe;
+            transform: translateY(4px);
+            box-shadow: 0 0 0 #222;
+        }
+        
+        .keyboard-key.shift-active {
+            background-color: #ff9800;
+        }
+        
+        .shift-instruction {
+            text-align: center;
+            margin-top: 15px;
+            padding: 10px;
+            background-color: rgba(255, 152, 0, 0.2);
+            border-radius: 5px;
+            font-size: 16px;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .shift-instruction i {
+            color: #ff9800;
+            margin-right: 5px;
+        }
+        
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background-color: #f0f;
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        @media (max-width: 768px) {
+            .modules {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats {
+                grid-template-columns: 1fr;
+            }
+            
+            header {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .keyboard-key {
+                width: 30px;
+                height: 30px;
+                font-size: 12px;
+            }
+            
+            .keyboard-key.space {
+                width: 150px;
+            }
+            
+            .keyboard-key.shift {
+                width: 70px;
+                font-size: 11px;
+            }
+            
+            .tabs {
+                flex-wrap: wrap;
+            }
+            
+            .lesson-header {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .lesson-stats {
+                justify-content: center;
+            }
+        }
+        #speed-challenge-btn, #accuracy-tips-btn {
+    margin: 5px;
+}
+
+.speed-mode {
+    border: 2px solid #ff9800;
+    box-shadow: 0 0 10px rgba(255, 152, 0, 0.5);
+}
+
+        .accuracy-mode {
+            border: 2px solid #4caf50;
+            box-shadow: 0 0 10px rgba(76, 175, 80, 0.5);
+        }
+        
+        .speed-mode.active, .accuracy-mode.active {
+            background-color: rgba(255, 152, 0, 0.1);
+        }
+        
+        .accuracy-tips {
+            display: none;
+            background-color: rgba(76, 175, 80, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        
+        .accuracy-tips.active {
+            display: block;
+        }
+        #formatting-options {
+    margin: 15px 0;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+}
+
+#error-report, #certification-success, #certification-failure {
+    margin: 20px 0;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+#certification-success {
+    background: rgba(76, 175, 80, 0.2);
+}
+
+#certification-failure {
+    background: rgba(255, 87, 34, 0.2);
+}
+
+.active-certification {
+    background-color: #ff9800 !important;
+    border-color: #ff9800 !important;
+}
+
+#keyboard-layout {
+    padding: 8px;
+    border-radius: 5px;
+    background: #333;
+    color: white;
+    border: none;
+    margin-left: 10px;
+}
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-keyboard"></i>
+                <span>typing.com</span>
+            </div>
+            <div class="logo">
+                <i class="fas fa-graduation-cap"></i>
+                <span>Learn to Type</span>
+            </div>
+            <div class="nav-buttons">
+                <button class="btn btn-primary">Sign Up Free!</button>
+                <button class="btn btn-secondary">Log In</button>
+            </div>
+        </header>
+        
+        <div class="progress-section">
+            <div class="progress-header">
+                <div class="progress-title">Learn to Type</div>
+                <div>Print Unit Certificate</div>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill"></div>
+            </div>
+            <div class="level">Current Level: <span id="current-level">Beginner</span></div>
+            <p>Create a free account to save your progress!</p>
+        </div>
+        
+        <div class="tabs">
+            <div class="tab active" data-tab="beginner">Beginner</div>
+            <div class="tab" data-tab="intermediate">Intermediate</div>
+            <div class="tab" data-tab="advanced">Advanced</div>
+        </div>
+        
+        <!-- Beginner Content -->
+        <div class="tab-content active" id="beginner-content">
+            <div class="modules">
+                <div class="module">
+                    <h2 class="module-title">
+                        <i class="fas fa-play-circle"></i>
+                        Basic Keys
+                    </h2>
+                    <ul class="lesson-list">
+                        <li class="lesson-item">
+                            <span>1. J, F, and Space</span>
+                            <button class="start-btn" onclick="startLesson(1, 'beginner')">Start</button>
+                        </li>
+                        <li class="lesson-item">
+                            <span>2. U, R, and K Keys</span>
+                            <button class="start-btn" onclick="startLesson(2, 'beginner')">Start</button>
+                        </li>
+                        <li class="lesson-item">
+                            <span>3. D, E, and I Keys</span>
+                            <button class="start-btn" onclick="startLesson(3, 'beginner')">Start</button>
+                        </li>
+                        <li class="lesson-item">
+                            <span>4. C, G, and N Keys</span>
+                            <button class="start-btn" onclick="startLesson(4, 'beginner')">Start</button>
+                        </li>
+                        <li class="lesson-item">
+                            <span>5. Shift Key Introduction</span>
+                            <button class="start-btn" onclick="startLesson(5, 'beginner')">Start</button>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="module">
+                    <h2 class="module-title">
+                        <i class="fas fa-flag-checkered"></i>
+                        Shift Key Practice
+                    </h2>
+                    <ul class="lesson-list">
+                        <li class="lesson-item">
+                            <span>6. Capital Letters: A-G</span>
+                            <button class="start-btn" onclick="startLesson(6, 'beginner')">Start</button>
+                        </li>
+                        <li class="lesson-item">
+                            <span>7. Capital Letters: H-N</span>
+                            <button class="start-btn" onclick="startLesson(7, 'beginner')">Start</button>
+                        </li>
+                        <li class="lesson-item">
+                            <span>8. Capital Letters: O-U</span>
+                            <button class="start-btn" onclick="startLesson(8, 'beginner')">Start</button>
+                        </li>
+                        <li class="lesson-item">
+                            <span>9. Capital Letters: V-Z</span>
+                            <button class="start-btn" onclick="startLesson(9, 'beginner')">Start</button>
+                        </li>
+                        <li class="lesson-item">
+                            <span>10. Simple Sentences</span>
+                            <button class="start-btn" onclick="startLesson(10, 'beginner')">Start</button>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="module">
+                    <h2 class="module-title">
+                        <i class="fas fa-trophy"></i>
+                        Wrapping Up
+                    </h2>
+                    <ul class="lesson-list">
+                        <li class="lesson-item">
+                            <span>11. Basic Punctuation</span>
+                            <button class="start-btn" onclick="startLesson(11, 'beginner')">Start</button>
+                        </li>
+                        <li class="lesson-item">
+                            <span>12. Names and Places</span>
+                            <button class="start-btn" onclick="startLesson(12, 'beginner')">Start</button>
+                        </li>
+                        <li class="lesson-item">
+                            <span>13. Simple Paragraphs</span>
+                            <button class="start-btn" onclick="startLesson(13, 'beginner')">Start</button>
+                        </li>
+                        <li class="lesson-item">
+                            <span>14. Beginner Wrap-up</span>
+                            <button class="start-btn" onclick="startLesson(14, 'beginner')">Start</button>
+                        </li>
+                        <li class="lesson-item">
+                            <span>15. Beginner Assessment</span>
+                            <button class="start-btn" onclick="startLesson(15, 'beginner')">Start</button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Intermediate Content -->
+        <div class="tab-content" id="intermediate-content">
+            <div class="modules">
+                <div class="module">
+                    <h2 class="module-title">
+                        <i class="fas fa-chart-line"></i>
+                        Building Speed
+                    </h2>
+                    <ul class="lesson-list">
+                        <li class="lesson-item">
+                            <span>1. Common Word Patterns</span>
+                            <button class="start-btn" onclick="startLesson(1, 'intermediate')">Start</button>
+                        </li>
+                        <li class="lesson-item">
+                            <span>2. Frequently Used Words</span>
+                            <button class="start-btn" onclick="startLesson(2, 'intermediate')">Start</button>
+                        </li>
+                        <li class="lesson-item">
+                            <span>3. Short Sentences with Capitals</span>
+                            <button class="start-btn" onclick="startLesson(3, 'intermediate')">Start</button>
+                        </li>
+                        <li class="lesson-item">
+                            <span>4. Speed Drills with Shift</span>
+                            <button class="start-btn" onclick="startLesson(4, 'intermediate')">Start</button>
+                        </li>
+                        <li class="lesson-item">
+                            <span>5. Intermediate Review 1</span>
+                            <button class="start-btn" onclick="startLesson(5, 'intermediate')">Start</button>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="module">
+                    <h2 class="module-title">
+                        <i class="fas fa-running"></i>
+                        Building Accuracy
+                    </h2>
+                    <ul class="lesson-list">
+                        <li class="lesson-item">
+                            <span>6. Accuracy Drills with Capitals</span>
+                            <button class="start-btn" onclick="startLesson(6, 'intermediate')">Start</button>
+                        </li>
+                        <li class="lesson-item">
+                            <span>7. Common Phrases with Punctuation</span>
+                            <button class="start-btn" onclick="startLesson(7, 'intermediate')">Start</button>
+                        </li>
+                        <li class="lesson-item">
+                            <span>8. Punctuation Practice</span>
+                            <button class="start-btn" onclick="startLesson(8, 'intermediate')">Start</button>
+                        </li>
+                        <li class="lesson-item">
+                            <span>9. Number Row with Shift</span>
+                            <button class="start-btn" onclick="startLesson(9, 'intermediate')">Start</button>
+                        </li>
+                        <li class="lesson-item">
+                            <span>10. Intermediate Review 2</span>
+                            <button class="start-btn" onclick="startLesson(10, 'intermediate')">Start</button>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="module">
+                    <h2 class="module-title">
+                        <i class="fas fa-bolt"></i>
+                        Speed & Accuracy Combo
+                    </h2>
+                    <ul class="lesson-list">
+                        <li class="lesson-item">
+                            <span>11. Timed Sentences with Capitals</span>
+                            <button class="start-btn" onclick="startLesson(11, 'intermediate')">Start</button>
+                        </li>
+                        <li class="lesson-item">
+                            <span>12. Paragraph Practice</span>
+                            <button class="start-btn" onclick="startLesson(12, 'intermediate')">Start</button>
+                        </li>
+                        <li class="lesson-item">
+                            <span>13. Error Reduction</span>
+                            <button class="start-btn" onclick="startLesson(13, 'intermediate')">Start</button>
+                        </li>
+                        <li class="lesson-item">
+                            <span>14. Intermediate Wrap-up</span>
+                            <button class="start-btn" onclick="startLesson(14, 'intermediate')">Start</button>
+                        </li>
+                        <li class="lesson-item">
+                            <span>15. Intermediate Assessment</span>
+                            <button class="start-btn" onclick="startLesson(15, 'intermediate')">Start</button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Advanced Content -->
+        <div class="tab-content" id="advanced-content">
+            <div class="modules">
+                <div class="module">
+                    <h2 class="module-title">
+                        <i class="fas fa-rocket"></i>
+                        Advanced Techniques
+                    </h2>
+                    <ul class="lesson-list">
+                        <li class="lesson-item">
+                            <span>1. Complex Word Patterns</span>
+                            <button class="start-btn" onclick="startLesson(1, 'advanced')">Start</button>
+                        </li>
+                        <li class="lesson-item">
+                            <span>2. Technical Vocabulary with Capitals</span>
+                            <button class="start-btn" onclick="startLesson(2, 'advanced')">Start</button>
+                        </li>
+                        <li class="lesson-item">
+                            <span>3. Speed Challenges with Symbols</span>
+                            <button class="start-btn" onclick="startLesson(3, 'advanced')">Start</button>
+                        </li>
+                        <li class="lesson-item">
+                            <span>4. Accuracy Mastery with Shift</span>
+                            <button class="start-btn" onclick="startLesson(4, 'advanced')">Start</button>
+                        </li>
+                        <li class="lesson-item">
+                            <span>5. Advanced Review 1</span>
+                            <button class="start-btn" onclick="startLesson(5, 'advanced')">Start</button>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="module">
+                    <h2 class="module-title">
+                        <i class="fas fa-medal"></i>
+                        Professional Level
+                    </h2>
+                    <ul class="lesson-list">
+                        <li class="lesson-item">
+                            <span>6. Business Correspondence</span>
+                            <button class="start-btn" onclick="startLesson(6, 'advanced')">Start</button>
+                        </li>
+                        <li class="lesson-item">
+                            <span>7. Legal Terminology</span>
+                            <button class="start-btn" onclick="startLesson(7, 'advanced')">Start</button>
+                        </li>
+                        <li class="lesson-item">
+                            <span>8. Medical Terminology</span>
+                            <button class="start-btn" onclick="startLesson(8, 'advanced')">Start</button>
+                        </li>
+                        <li class="lesson-item">
+                            <span>9. Technical Documentation</span>
+                            <button class="start-btn" onclick="startLesson(9, 'advanced')">Start</button>
+                        </li>
+                        <li class="lesson-item">
+                            <span>10. Advanced Review 2</span>
+                            <button class="start-btn" onclick="startLesson(10, 'advanced')">Start</button>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="module">
+                    <h2 class="module-title">
+                        <i class="fas fa-graduation-cap"></i>
+                        Mastery Level
+                    </h2>
+                    <ul class="lesson-list">
+                        <li class="lesson-item">
+                            <span>11. Transcription Practice</span>
+                            <button class="start-btn" onclick="startLesson(11, 'advanced')">Start</button>
+                        </li>
+                        <li class="lesson-item">
+                            <span>12. Speed Typing Tests with Symbols</span>
+                            <button class="start-btn" onclick="startLesson(12, 'advanced')">Start</button>
+                        </li>
+                        <li class="lesson-item">
+                            <span>13. Error-Free Typing with Capitals</span>
+                            <button class="start-btn" onclick="startLesson(13, 'advanced')">Start</button>
+                        </li>
+                        <li class="lesson-item">
+                            <span>14. Advanced Wrap-up</span>
+                            <button class="start-btn" onclick="startLesson(14, 'advanced')">Start</button>
+                        </li>
+                        <li class="lesson-item">
+                            <span>15. Advanced Certification</span>
+                            <button class="start-btn" onclick="startLesson(15, 'advanced')">Start</button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        
+        <!-- Typing Lesson Container -->
+        <div class="typing-lesson" id="typing-lesson">
+            <div class="lesson-header">
+                <h2 class="lesson-title" id="lesson-title">J, F, and Space</h2>
+                <div class="lesson-stats">
+                    <div class="stat">
+                        Accuracy: <span id="accuracy">100%</span>
+                    </div>
+                    <div class="stat">
+                        WPM: <span id="wpm">0</span>
+                    </div>
+                    <div class="stat">
+                        Time: <span id="time">0s</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-display" id="text-display">
+                <!-- Text to type will be inserted here -->
+            </div>
+            
+            <div class="shift-instruction" id="shift-instruction">
+                <i class="fas fa-info-circle"></i>
+                <span id="instruction-text">Use the Shift key to type capital letters</span>
+            </div>
+            
+            <div class="input-area">
+                <input type="text" id="typing-input" placeholder="Start typing here...">
+                <button class="btn btn-primary" id="restart-btn"><i class="fas fa-redo"></i></button>
+            </div>
+            
+            <div class="controls">
+                <button class="btn btn-secondary" id="hint-btn"><i class="fas fa-lightbulb"></i> Hint</button>
+                <button class="btn btn-secondary" id="back-btn"><i class="fas fa-arrow-left"></i> Back to Lessons</button>
+            </div>
+            
+            <div class="result" id="result">
+                <h2>Lesson Complete!</h2>
+                <p>Your accuracy: <span id="final-accuracy">100%</span></p>
+                <p>Your speed: <span id="final-wpm">0</span> WPM</p>
+                <button class="btn btn-primary" id="next-lesson-btn">Next Lesson</button>
+            </div>
+            
+            <div class="keyboard">
+                <div class="keyboard-row">
+                    <div class="keyboard-key">`</div>
+                    <div class="keyboard-key">1</div>
+                    <div class="keyboard-key">2</div>
+                    <div class="keyboard-key">3</div>
+                    <div class="keyboard-key">4</div>
+                    <div class="keyboard-key">5</div>
+                    <div class="keyboard-key">6</div>
+                    <div class="keyboard-key">7</div>
+                    <div class="keyboard-key">8</div>
+                    <div class="keyboard-key">9</div>
+                    <div class="keyboard-key">0</div>
+                    <div class="keyboard-key">-</div>
+                    <div class="keyboard-key">=</div>
+                    <div class="keyboard-key shift" style="width: 80px;">Delete</div>
+                </div>
+                <div class="keyboard-row">
+                    <div class="keyboard-key shift" style="width: 80px;">Tab</div>
+                    <div class="keyboard-key">Q</div>
+                    <div class="keyboard-key">W</div>
+                    <div class="keyboard-key">E</div>
+                    <div class="keyboard-key">R</div>
+                    <div class="keyboard-key">T</div>
+                    <div class="keyboard-key">Y</div>
+                    <div class="keyboard-key">U</div>
+                    <div class="keyboard-key">I</div>
+                    <div class="keyboard-key">O</div>
+                    <div class="keyboard-key">P</div>
+                    <div class="keyboard-key">[</div>
+                    <div class="keyboard-key">]</div>
+                    <div class="keyboard-key">\</div>
+                </div>
+                <div class="keyboard-row">
+                    <div class="keyboard-key shift" id="caps-lock">Caps</div>
+                    <div class="keyboard-key">A</div>
+                    <div class="keyboard-key">S</div>
+                    <div class="keyboard-key">D</div>
+                    <div class="keyboard-key">F</div>
+                    <div class="keyboard-key">G</div>
+                    <div class="keyboard-key">H</div>
+                    <div class="keyboard-key">J</div>
+                    <div class="keyboard-key">K</div>
+                    <div class="keyboard-key">L</div>
+                    <div class="keyboard-key">;</div>
+                    <div class="keyboard-key">'</div>
+                    <div class="keyboard-key shift" style="width: 80px;">Enter</div>
+                </div>
+                <div class="keyboard-row">
+                    <div class="keyboard-key shift" id="left-shift">Shift</div>
+                    <div class="keyboard-key">Z</div>
+                    <div class="keyboard-key">X</div>
+                    <div class="keyboard-key">C</div>
+                    <div class="keyboard-key">V</div>
+                    <div class="keyboard-key">B</div>
+                    <div class="keyboard-key">N</div>
+                    <div class="keyboard-key">M</div>
+                    <div class="keyboard-key">,</div>
+                    <div class="keyboard-key">.</div>
+                    <div class="keyboard-key">/</div>
+                    <div class="keyboard-key shift" id="right-shift">Shift</div>
+                </div>
+                <div class="keyboard-row">
+                    <div class="keyboard-key" style="width: 60px;">Ctrl</div>
+                    <div class="keyboard-key" style="width: 60px;">Alt</div>
+                    <div class="keyboard-key space">Space</div>
+                    <div class="keyboard-key" style="width: 60px;">Alt</div>
+                    <div class="keyboard-key" style="width: 60px;">Ctrl</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="stats">
+            <div class="stat-card">
+                <div class="stat-label">Wins</div>
+                <div class="stat-value">9</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-label">Accuracy</div>
+                <div class="stat-value">95%</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-label">Top Problem Keys</div>
+                <div class="problem-keys">
+                    <div class="key">Q</div>
+                    <div class="key">Z</div>
+                    <div class="key">D</div>
+                    <div class="key">P</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>Learn to Type: Touch Typing Practice - Learn to type easily with practice lessons for touch typing.</p>
+        <p>© 2025 Typing.com</p>
+        
+    </footer>
+<div id="speed-timer" style="text-align: center; margin: 10px 0; font-weight: bold; display: none;">
+    Time left: 120s
+</div>
+
+    <script>
+        // Lesson data for all levels
+        const lessons = {
+            beginner: [
+                {
+                    title: "J, F, and Space",
+                    text: "jj jj jj jj jj jj ff ff ff ff ff ff jf jf jf jf jf jf fj fj fj fj fj fj j j f j f j f j f j f j f f j f j f j f j f j f j",
+                    focusKeys: ['j', 'f', ' '],
+                    instruction: "Use the Space bar between words"
+                },
+                {
+                    title: "U, R, and K Keys",
+                    text: "uu uu uu uu uu uu rr rr rr rr rr rr kk kk kk kk kk kk ur ur ur ur ur ur uk uk uk uk uk uk ru ru ru ru ru ru rk rk rk rk rk rk",
+                    focusKeys: ['u', 'r', 'k'],
+                    instruction: "Keep your fingers on the home row"
+                },
+                {
+                    title: "D, E, and I Keys",
+                    text: "dd dd dd dd dd dd ee ee ee ee ee ee ii ii ii ii ii ii de de de de de de di di di di di di ed ed ed ed ed ed id id id id id id",
+                    focusKeys: ['d', 'e', 'i'],
+                    instruction: "Use your middle fingers for these keys"
+                },
+                {
+                    title: "C, G, and N Keys",
+                    text: "cc cc cc cc cc cc gg gg gg gg gg gg nn nn nn nn nn nn cg cg cg cg cg cg cn cn cn cn cn cn gc gc gc gc gc gc gn gn gn gn gn gn",
+                    focusKeys: ['c', 'g', 'n'],
+                    instruction: "These keys are reached with your index fingers"
+                },
+                {
+                    title: "Shift Key Introduction",
+                    text: "A a B b C c D d E e F f G g H h I i J j K k L l M m N n O o P p Q q R r S s T t U u V v W w X x Y y Z z",
+                    focusKeys: ['Shift', 'A', 'B', 'C'],
+                    instruction: "Hold Shift and press a letter to make it capital"
+                },
+        // Lesson 6: Capital Letters: A-G
+        {
+            title: "Capital Letters: A-G",
+            text: "Apple Banana Carrot Dog Elephant Frog Grape Apple Banana Carrot Dog Elephant Frog Grape A B C D E F G a b c d e f g",
+            focusKeys: ['Shift', 'A', 'B', 'C', 'D', 'E', 'F', 'G'],
+            instruction: "Hold Shift for capital letters at the start of sentences"
+        },
+        
+        // Lesson 7: Capital Letters: H-N
+        {
+            title: "Capital Letters: H-N",
+            text: "House Igloo Jacket Kangaroo Lemon Mountain House Igloo Jacket Kangaroo Lemon Mountain H I J K L M N h i j k l m n",
+            focusKeys: ['Shift', 'H', 'I', 'J', 'K', 'L', 'M', 'N'],
+            instruction: "Use your pinky finger for the Shift key"
+        },
+        
+        // Lesson 8: Capital Letters: O-U
+        {
+            title: "Capital Letters: O-U",
+            text: "Orange Piano Queen Rabbit Sun Turtle Orange Piano Queen Rabbit Sun Turtle O P Q R S T U o p q r s t u",
+            focusKeys: ['Shift', 'O', 'P', 'Q', 'R', 'S', 'T', 'U'],
+            instruction: "Practice using both left and right Shift keys"
+        },
+        
+        // Lesson 9: Capital Letters: V-Z
+        {
+            title: "Capital Letters: V-Z",
+            text: "Violin Water Xylophone Yo-yo Zebra Violin Water Xylophone Yo-yo Zebra V W X Y Z v w x y z",
+            focusKeys: ['Shift', 'V', 'W', 'X', 'Y', 'Z'],
+            instruction: "Capitalize proper nouns like names and places"
+        },
+        
+        // Lesson 10: Simple Sentences
+        {
+            title: "Simple Sentences",
+            text: "The dog ran. I like cats. She is happy. We go to school. He has a book. They play games. My name is Alex. It is sunny today.",
+            focusKeys: ['Shift', 'T', 'I', 'S', 'W', 'H', 'T', 'M', 'I'],
+            instruction: "Capitalize the first word of each sentence"
+        },
+        
+        // Lesson 11: Basic Punctuation
+        {
+            title: "Basic Punctuation",
+            text: "Hello! How are you? I'm fine. It's raining. Don't go! Wait, please. Yes, I will. No, thank you. Maybe later.",
+            focusKeys: ['Shift', ',', '.', '!', '?', "'"],
+            instruction: "Use Shift for punctuation like ! and ?"
+        },
+        
+        // Lesson 12: Names and Places
+        {
+            title: "Names and Places",
+            text: "John went to Paris. Mary likes London. David visited Tokyo. Susan is from Berlin. Mike traveled to Rome. Anna loves Madrid.",
+            focusKeys: ['Shift', 'J', 'P', 'M', 'L', 'D', 'T', 'S', 'B', 'A', 'R'],
+            instruction: "Capitalize names of people and places"
+        },
+        
+        // Lesson 13: Simple Paragraphs
+        {
+            title: "Simple Paragraphs",
+            text: "My name is Tom. I have a dog. His name is Spot. We play in the park. It is fun. The sun is bright. We go home at five.",
+            focusKeys: ['Shift', 'M', 'I', 'H', 'H', 'W', 'I', 'T', 'W'],
+            instruction: "Remember to capitalize the first word of each sentence"
+        },
+        
+        // Lesson 14: Beginner Wrap-up
+        {
+            title: "Beginner Wrap-up",
+            text: "The quick brown fox jumps over the lazy dog. Pack my box with five dozen liquor jugs. How vexingly quick daft zebras jump.",
+            focusKeys: ['all'],
+            instruction: "Practice all the keys you've learned"
+        },
+        
+        // Lesson 15: Beginner Assessment
+        {
+            title: "Beginner Assessment",
+            text: "Jane saw a zebra at the zoo. It was black and white. She took photos. Then she visited the monkeys. They were funny. She had a great day.",
+            focusKeys: ['all'],
+            instruction: "Type this paragraph with proper capitalization"
+        }
+    ],
+            intermediate: [
+                {
+                    title: "Common Word Patterns",
+                    text: "The and For Are But Not You All Any Can Had Her Was One Our Out Day Get Has Him His How Man New Now Old See Two Way Who Boy Did Its Let Put Say She Too Use",
+                    focusKeys: ['Shift', 'T', 'A', 'F', 'B', 'N', 'Y'],
+                    instruction: "Capitalize the first word of each sentence"
+                },
+                {
+                    title: "Frequently Used Words",
+                    text: "That With This From They Will Would There Their What About Which When Make Like Time Just Him Take People Into Year Your Good Some Could Them Than Then Now",
+                    focusKeys: ['Shift', 'T', 'W', 'T', 'F', 'T', 'W'],
+                    instruction: "Practice capitalizing common words"
+                },
+                {
+                    title: "Short Sentences with Capitals",
+                    text: "The quick brown fox jumps over the lazy dog. Pack my box with five dozen liquor jugs. How vexingly quick daft zebras jump. Sphinx of black quartz judge my vow.",
+                    focusKeys: ['Shift', 'T', 'P', 'H', 'S'],
+                    instruction: "Capitalize the first letter of each sentence"
+                },
+                {
+                    title: "Speed Drills with Shift",
+                    text: "Bright Light Right Night Sight Tight Fight Might Right Bright Light Right Night Sight Tight Fight Might Right Bright Light Right Night Sight Tight Fight Might Right",
+                    focusKeys: ['Shift', 'B', 'L', 'R', 'N', 'S', 'T', 'F', 'M'],
+                    instruction: "Use Shift for proper nouns and sentence starters"
+                },
+                {
+                    title: "Intermediate Review 1",
+                    text: "Learning to type quickly and accurately requires consistent practice and dedication to the craft of keyboard mastery over time with patience and persistence for success.",
+                    focusKeys: ['Shift', 'L'],
+                    instruction: "Capitalize only the first word of the sentence"
+                }
+            ],
+            advanced: [
+                {
+                    title: "Complex Word Patterns",
+                    text: "Acquiesce Bouquet Collateral Delineate Ephemeral Facetious Grandiose Heuristic Idiosyncratic Juxtaposition Kaleidoscope Labyrinthine Mellifluous Nefarious Obfuscate Pernicious Quintessential Recalcitrant Serendipity Tumultuous Ubiquitous Vicarious Whimsical",
+                    focusKeys: ['Shift', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W'],
+                    instruction: "Capitalize all words in this advanced vocabulary list"
+                },
+                {
+                    title: "Technical Vocabulary with Capitals",
+                    text: "Algorithm Bandwidth Cryptocurrency Database Encryption Firewall Gigabyte Hexadecimal Interface JavaScript Kilobyte Linux Microprocessor Nanotechnology Oscillation Pipeline Quantum Cryptography Ransomware Semiconductor Telecommunications Ultraviolet Virtualization Wavelength XML YouTube Zombie",
+                    focusKeys: ['Shift', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'],
+                    instruction: "Capitalize technical terms and acronyms"
+                },
+                {
+                    title: "Speed Challenges with Symbols",
+                    text: "The @ symbol is used in email addresses (e.g., user@example.com). The # symbol is called a 'hashtag' on social media. The $ symbol represents dollars, as in $100. The % symbol indicates percentage, like 25%. The & symbol means 'and', as in Johnson & Johnson.",
+                    focusKeys: ['Shift', 'T', '@', '#', '$', '%', '&'],
+                    instruction: "Use Shift for symbols in technical contexts"
+                },
+                {
+                    title: "Accuracy Mastery with Shift",
+                    text: "The company's Q3 financial report showed a 22.5% increase in revenue compared to Q2. However, operating expenses rose by 15.8%, resulting in a net profit margin of 18.7%. The CEO stated, 'We're pleased with these results despite challenging market conditions.'",
+                    focusKeys: ['Shift', 'T', 'Q', 'H', 'O', 'T', 'C', 'W', 'P'],
+                    instruction: "Capitalize financial terms and quotations"
+                },
+                {
+                    title: "Advanced Review 1",
+                    text: "Quantum computing leverages quantum mechanics to process information. Unlike classical computers that use bits (0s and 1s), quantum computers use quantum bits or 'qubits'. This allows them to solve certain problems much faster than traditional computers.",
+                    focusKeys: ['Shift', 'Q', 'U', 'C', 'U', 'T', 'Q'],
+                    instruction: "Capitalize technical terms and concepts"
+                },
+                   // Lesson 6: Business Correspondence
+        {
+            title: "Business Correspondence",
+            text: "Dear Dr. Richardson, Thank you for your inquiry regarding our services. We would be delighted to schedule a consultation at your convenience. Please reply with your availability next week. Sincerely, Jennifer Alvarez Customer Relations Manager",
+            focusKeys: ['Shift', 'D', 'D', 'R', 'T', 'W', 'P', 'S', 'J', 'A', 'C', 'R', 'M'],
+            instruction: "Practice formal business writing with proper capitalization and formatting"
+        },
+        
+        // Lesson 7: Legal Terminology
+        {
+            title: "Legal Terminology",
+            text: "The Plaintiff, John Smith, alleges that the Defendant, ABC Corporation, breached the contract dated January 15, 2022. The Plaintiff seeks damages in the amount of $500,000 plus court costs. A jury trial has been requested pursuant to Rule 38 of the Federal Rules of Civil Procedure.",
+            focusKeys: ['Shift', 'T', 'P', 'J', 'S', 'D', 'A', 'C', 'T', 'P', 'A', 'J', 'R', 'F', 'R', 'C', 'P'],
+            instruction: "Type legal documents with precise terminology and formatting"
+        },
+        
+        // Lesson 8: Medical Terminology
+        {
+            title: "Medical Terminology",
+            text: "The patient was diagnosed with Hypertension (ICD-10 code I10) and Hyperlipidemia (ICD-10 code E78.5). Treatment included Lisinopril 10mg daily and Atorvastatin 20mg daily. Follow-up is scheduled in 3 months to monitor blood pressure and LDL cholesterol levels.",
+            focusKeys: ['Shift', 'T', 'H', 'I', 'H', 'I', 'T', 'L', 'A', 'F', 'L', 'D', 'L', 'C'],
+            instruction: "Practice medical documentation with specialized terminology"
+        },
+        
+        // Lesson 9: Technical Documentation
+        {
+            title: "Technical Documentation",
+            text: "To implement the API, first authenticate using OAuth 2.0. Then send a GET request to /api/v1/users endpoint. The response will be a JSON object containing user data. For errors, the API returns HTTP status codes (e.g., 400 Bad Request, 404 Not Found, 500 Internal Server Error).",
+            focusKeys: ['Shift', 'T', 'A', 'F', 'O', 'T', 'G', '/', 'a', 'v', 'u', 'T', 'J', 'F', 'A', 'H', 'B', 'R', 'N', 'F', 'I', 'S', 'E'],
+            instruction: "Type technical documentation with code elements and proper formatting"
+        },
+        
+        // Lesson 10: Advanced Review 2
+        {
+            title: "Advanced Review 2",
+            text: "The CRISPR-Cas9 system is a revolutionary gene-editing technology that allows scientists to precisely modify DNA sequences. It has potential applications in treating genetic disorders, improving crops, and combating infectious diseases. However, ethical concerns regarding its use in human embryos remain controversial.",
+            focusKeys: ['Shift', 'T', 'C', 'C', 'I', 'H', 'H', 'e', 'c', 'r', 'a', 'i', 'c'],
+            instruction: "Review advanced typing skills with complex technical content"
+        },
+        
+        // Lesson 11: Transcription Practice
+        {
+            title: "Transcription Practice",
+            text: "During the conference call, the CEO stated: 'Our Q4 results exceeded expectations, with revenue growing by 27% year-over-year. We're particularly proud of our team's performance in the Asian market, which saw a 42% increase in sales. Moving forward, we'll continue to invest in R&D to maintain our competitive advantage.'",
+            focusKeys: ['Shift', 'D', 'C', 'C', 'T', 'C', 'O', 'Q', 'W', 'W', 'P', 'A', 'M', 'W', 'M', 'F', 'W', 'C', 'R', 'D', 'T', 'M', 'O', 'C', 'A'],
+            instruction: "Practice transcription of spoken content with proper punctuation"
+        },
+        
+        // Lesson 12: Speed Typing Tests with Symbols
+        {
+            title: "Speed Typing Tests with Symbols",
+            text: "The formula is: E = mc² where E is energy, m is mass, and c is the speed of light (approximately 299,792,458 m/s). Another important equation is F = ma (Force = mass × acceleration). In mathematics, π (pi) is approximately 3.14159, and φ (phi) is about 1.61803.",
+            focusKeys: ['Shift', 'T', 'E', '=', 'm', 'c', '²', 'A', 'F', '=', 'm', 'a', 'I', 'm', 'π', 'φ'],
+            instruction: "Type complex content with mathematical symbols and equations"
+        },
+        
+        // Lesson 13: Error-Free Typing with Capitals
+        {
+            title: "Error-Free Typing with Capitals",
+            text: "The Louvre Museum in Paris houses many famous artworks, including the Mona Lisa by Leonardo da Vinci and the Venus de Milo. The museum receives over 10 million visitors annually, making it the world's most visited art museum. It opened on August 10, 1793, with an exhibition of 537 paintings.",
+            focusKeys: ['Shift', 'T', 'L', 'M', 'P', 'M', 'L', 'L', 'd', 'V', 'V', 'd', 'M', 'T', 'I', 'A', 'I', 'O', 'A', '1', '1', '7', '9', '3'],
+            instruction: "Focus on error-free typing with proper capitalization of proper nouns"
+        },
+        
+        // Lesson 14: Advanced Wrap-up
+        {
+            title: "Advanced Wrap-up",
+            text: "According to the IPCC's Sixth Assessment Report, human activities have unequivocally caused global warming, with temperatures rising approximately 1.1°C since the late 19th century. The report emphasizes that deep reductions in CO₂ and other greenhouse gas emissions are necessary to limit warming to 1.5°C or 2°C as outlined in the Paris Agreement.",
+            focusKeys: ['Shift', 'A', 'T', 'I', 'S', 'A', 'R', 'H', 'A', 'H', 'U', 'C', 'G', 'W', 'T', 'R', 'A', '1', '1', '°', 'C', 'S', 'T', 'L', '1', '9', 'T', 'C', 'T', 'R', 'E', 'T', 'D', 'R', 'I', 'C', 'O', '₂', 'A', 'O', 'G', 'G', 'E', 'A', 'N', 'T', 'L', 'W', 'T', '1', '5', '°', 'C', 'O', '2', '°', 'C', 'A', 'O', 'T', 'P', 'A'],
+            instruction: "Final advanced practice with complex scientific content"
+        },
+        
+        // Lesson 15: Advanced Certification
+        {
+            title: "Advanced Certification",
+            text: "The Typing Master Advanced Certification demonstrates exceptional proficiency in keyboarding skills, including speed, accuracy, and proper use of capitalization and punctuation. Certified individuals can type at least 80 words per minute with 98% accuracy or higher. This certification is recognized by employers in various industries as validation of superior typing ability.",
+            focusKeys: ['Shift', 'T', 'T', 'M', 'A', 'C', 'D', 'E', 'P', 'I', 'K', 'S', 'I', 'S', 'A', 'A', 'P', 'U', 'O', 'C', 'A', 'P', 'C', 'I', 'C', 'T', 'A', 'L', '8', '0', 'W', 'P', 'M', 'W', '9', '8', '%', 'A', 'O', 'H', 'T', 'C', 'I', 'R', 'B', 'E', 'I', 'V', 'I', 'A', 'V', 'O', 'S', 'T', 'A'],
+            instruction: "Demonstrate mastery of advanced typing skills for certification"
+        }
+            ]
+        };
+        
+        
+        // DOM elements
+        const typingLesson = document.getElementById('typing-lesson');
+        const lessonTitle = document.getElementById('lesson-title');
+        const textDisplay = document.getElementById('text-display');
+        const typingInput = document.getElementById('typing-input');
+        const accuracyDisplay = document.getElementById('accuracy');
+        const wpmDisplay = document.getElementById('wpm');
+        const timeDisplay = document.getElementById('time');
+        const restartBtn = document.getElementById('restart-btn');
+        const backBtn = document.getElementById('back-btn');
+        const resultDiv = document.getElementById('result');
+        const finalAccuracy = document.getElementById('final-accuracy');
+        const finalWpm = document.getElementById('final-wpm');
+        const nextLessonBtn = document.getElementById('next-lesson-btn');
+        const progressFill = document.getElementById('progress-fill');
+        const hintBtn = document.getElementById('hint-btn');
+        const tabs = document.querySelectorAll('.tab');
+        const tabContents = document.querySelectorAll('.tab-content');
+        const currentLevel = document.getElementById('current-level');
+        const instructionText = document.getElementById('instruction-text');
+        const shiftInstruction = document.getElementById('shift-instruction');
+        const leftShiftKey = document.getElementById('left-shift');
+        const rightShiftKey = document.getElementById('right-shift');
+        const capsLockKey = document.getElementById('caps-lock');
+        
+        // Lesson state
+        let currentLevelType = 'beginner';
+        let currentLessonIndex = 0;
+        let currentWordIndex = 0;
+        let startTime;
+        let timerInterval;
+        let correctChars = 0;
+        let totalChars = 0;
+        let lessonCompleted = false;
+        let shiftPressed = false;
+        let capsLock = false;
+        
+        // Initialize the app
+        function init() {
+            // Set progress
+            progressFill.style.width = '5%';
+            
+            // Add event listeners
+            restartBtn.addEventListener('click', restartLesson);
+            backBtn.addEventListener('click', hideLesson);
+            nextLessonBtn.addEventListener('click', nextLesson);
+            hintBtn.addEventListener('click', showHint);
+            typingInput.addEventListener('input', handleTyping);
+            typingInput.addEventListener('keydown', handleKeyDown);
+            typingInput.addEventListener('keyup', handleKeyUp);
+            
+            // Tab event listeners
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const tabId = tab.getAttribute('data-tab');
+                    switchTab(tabId);
+                });
+            });
+        }
+        
+        // Switch between tabs
+        function switchTab(tabId) {
+            // Update tabs
+            tabs.forEach(tab => {
+                if (tab.getAttribute('data-tab') === tabId) {
+                    tab.classList.add('active');
+                } else {
+                    tab.classList.remove('active');
+                }
+            });
+            
+            // Update tab contents
+            tabContents.forEach(content => {
+                if (content.id === `${tabId}-content`) {
+                    content.classList.add('active');
+                    content.style.animation = 'none';
+                    setTimeout(() => {
+                        content.style.animation = 'fadeIn 0.5s ease forwards';
+                    }, 10);
+                } else {
+                    content.classList.remove('active');
+                }
+            });
+            
+            // Update current level
+            currentLevelType = tabId;
+            currentLevel.textContent = tabId.charAt(0).toUpperCase() + tabId.slice(1);
+            
+            // Animate the level change
+            animateLevelChange();
+        }
+        
+        // Animate level change
+        function animateLevelChange() {
+            const levelElement = document.getElementById('current-level');
+            levelElement.style.animation = 'pop 0.5s ease';
+            setTimeout(() => {
+                levelElement.style.animation = '';
+            }, 500);
+        }
+        
+        // Start a lesson
+        function startLesson(lessonNumber, level) {
+            currentLevelType = level;
+            currentLessonIndex = lessonNumber - 1;
+            
+            // Show the typing lesson container
+            typingLesson.style.display = 'block';
+            typingLesson.style.animation = 'fadeIn 0.5s ease forwards';
+            
+            // Scroll to the lesson
+            typingLesson.scrollIntoView({ behavior: 'smooth' });
+            
+            // Set lesson title
+            lessonTitle.textContent = `${currentLessonIndex + 1}. ${lessons[level][currentLessonIndex].title}`;
+            
+            // Set instruction text
+            instructionText.textContent = lessons[level][currentLessonIndex].instruction;
+            
+            // Prepare the text
+            prepareText();
+            
+            // Reset lesson state
+            currentWordIndex = 0;
+            correctChars = 0;
+            totalChars = 0;
+            lessonCompleted = false;
+            
+            // Focus on input
+            typingInput.value = '';
+            typingInput.focus();
+            
+            // Hide result
+            resultDiv.style.display = 'none';
+            
+            // Start timer
+            startTimer();
+        }
+        
+        // Prepare the text for display
+        function prepareText() {
+            const words = lessons[currentLevelType][currentLessonIndex].text.split(' ');
+            textDisplay.innerHTML = '';
+            
+            words.forEach((word, index) => {
+                const wordSpan = document.createElement('span');
+                wordSpan.textContent = word;
+                if (index === 0) {
+                    wordSpan.classList.add('current-word');
+                }
+                textDisplay.appendChild(wordSpan);
+                if (index < words.length - 1) {
+                    textDisplay.appendChild(document.createTextNode(' '));
+                }
+            });
+        }
+        
+        // Handle typing input
+        function handleTyping() {
+            if (lessonCompleted) return;
+            
+            const input = typingInput.value;
+            const words = lessons[currentLevelType][currentLessonIndex].text.split(' ');
+            const currentWord = words[currentWordIndex];
+            
+            // Update stats
+            totalChars++;
+            if (input === currentWord.substring(0, input.length)) {
+                correctChars++;
+            }
+            
+            const accuracy = Math.round((correctChars / totalChars) * 100);
+            
+            // Animate the accuracy update
+            accuracyDisplay.textContent = `${accuracy}%`;
+            accuracyDisplay.classList.add('value-updated');
+            setTimeout(() => {
+                accuracyDisplay.classList.remove('value-updated');
+            }, 500);
+            
+            // Check if word is completed
+            if (input === currentWord + ' ' || input === currentWord) {
+                // Move to next word
+                currentWordIndex++;
+                
+                // Check if lesson is completed
+                if (currentWordIndex >= words.length) {
+                    completeLesson();
+                    return;
+                }
+                
+                // Update display
+                const wordSpans = textDisplay.querySelectorAll('span');
+                wordSpans.forEach((span, index) => {
+                    span.classList.remove('current-word');
+                    if (index === currentWordIndex) {
+                        span.classList.add('current-word');
+                    }
+                });
+                
+                // Clear input
+                typingInput.value = '';
+            }
+        }
+        
+        // Handle key down events for keyboard highlight
+        function handleKeyDown(e) {
+            const key = e.key.toLowerCase();
+            const keyboardKeys = document.querySelectorAll('.keyboard-key');
+            
+            // Remove active class from all keys
+            keyboardKeys.forEach(keyEl => {
+                keyEl.classList.remove('active');
+                keyEl.classList.remove('shift-active');
+            });
+            
+            // Handle Shift key
+            if (e.key === 'Shift') {
+                shiftPressed = true;
+                leftShiftKey.classList.add('shift-active');
+                rightShiftKey.classList.add('shift-active');
+                return;
+            }
+            
+            // Handle Caps Lock
+            if (e.key === 'CapsLock') {
+                capsLock = !capsLock;
+                capsLockKey.classList.toggle('shift-active', capsLock);
+                return;
+            }
+            
+            // Add active class to pressed key
+            if (key === ' ') {
+                document.querySelector('.keyboard-key.space').classList.add('active');
+            } else {
+                const keyEl = Array.from(keyboardKeys).find(
+                    el => el.textContent.toLowerCase() === key
+                );
+                if (keyEl) {
+                    keyEl.classList.add('active');
+                }
+            }
+        }
+        
+        // Handle key up events
+        function handleKeyUp(e) {
+            // Handle Shift key
+            if (e.key === 'Shift') {
+                shiftPressed = false;
+                leftShiftKey.classList.remove('shift-active');
+                rightShiftKey.classList.remove('shift-active');
+            }
+        }
+        
+        // Start the timer
+        function startTimer() {
+            startTime = new Date();
+            clearInterval(timerInterval);
+            timerInterval = setInterval(updateTimer, 1000);
+        }
+        
+        // Update the timer
+        function updateTimer() {
+            const currentTime = new Date();
+            const elapsed = Math.floor((currentTime - startTime) / 1000);
+            
+            // Animate the timer update
+            timeDisplay.textContent = `${elapsed}s`;
+            timeDisplay.classList.add('value-updated');
+            setTimeout(() => {
+                timeDisplay.classList.remove('value-updated');
+            }, 300);
+            
+            // Calculate WPM
+            const minutes = elapsed / 60;
+            const wpm = Math.round((correctChars / 5) / minutes) || 0;
+            
+            // Animate the WPM update
+            wpmDisplay.textContent = wpm;
+            wpmDisplay.classList.add('value-updated');
+            setTimeout(() => {
+                wpmDisplay.classList.remove('value-updated');
+            }, 300);
+        }
+        
+        // Complete the lesson
+        function completeLesson() {
+            lessonCompleted = true;
+            clearInterval(timerInterval);
+            
+            // Calculate final stats
+            const elapsed = Math.floor((new Date() - startTime) / 1000);
+            const minutes = elapsed / 60;
+            const wpm = Math.round((correctChars / 5) / minutes) || 0;
+            const accuracy = Math.round((correctChars / totalChars) * 100);
+            
+            // Update final stats
+            finalAccuracy.textContent = `${accuracy}%`;
+            finalWpm.textContent = wpm;
+            
+            // Show result
+            resultDiv.style.display = 'block';
+            resultDiv.style.animation = 'fadeIn 0.5s ease forwards';
+            
+            // Update progress
+            const currentProgress = parseInt(progressFill.style.width);
+            progressFill.style.width = `${Math.min(currentProgress + 6, 100)}%`;
+            
+            // Create confetti effect
+            createConfetti();
+        }
+        
+        // Create confetti effect
+        function createConfetti() {
+            const colors = ['#a74cafbe', '#ff5722', '#2196f3', '#ffeb3b', '#9c27b0', '#00bcd4'];
+            
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.width = (Math.random() * 10 + 5) + 'px';
+                confetti.style.height = (Math.random() * 10 + 5) + 'px';
+                document.body.appendChild(confetti);
+                
+                // Animate confetti
+                const animation = confetti.animate([
+                    { transform: 'translateY(-20vh) rotate(0deg)', opacity: 1 },
+                    { transform: `translateY(80vh) rotate(${Math.random() * 360}deg)`, opacity: 0 }
+                ], {
+                    duration: Math.random() * 3000 + 2000,
+                    easing: 'cubic-bezier(0.1, 0.8, 0.1, 1)'
+                });
+                
+                animation.onfinish = () => {
+                    confetti.remove();
+                };
+            }
+        }
+        
+        // Restart the lesson
+        function restartLesson() {
+            // Add button press animation
+            restartBtn.style.animation = 'pop 0.3s ease';
+            setTimeout(() => {
+                restartBtn.style.animation = '';
+                startLesson(currentLessonIndex + 1, currentLevelType);
+            }, 300);
+        }
+        
+        // Move to next lesson
+        function nextLesson() {
+            // Add button press animation
+            nextLessonBtn.style.animation = 'pop 0.3s ease';
+            setTimeout(() => {
+                nextLessonBtn.style.animation = '';
+                if (currentLessonIndex < lessons[currentLevelType].length - 1) {
+                    startLesson(currentLessonIndex + 2, currentLevelType);
+                } else {
+                    hideLesson();
+                }
+            }, 300);
+        }
+        
+        // Hide the lesson
+        function hideLesson() {
+            // Add slide out animation
+            typingLesson.style.animation = 'slideOutRight 0.5s ease forwards';
+            setTimeout(() => {
+                typingLesson.style.display = 'none';
+                clearInterval(timerInterval);
+            }, 500);
+        }
+        
+        // Show hint for the current lesson
+        function showHint() {
+            // Add button press animation
+            hintBtn.style.animation = 'pop 0.3s ease';
+            setTimeout(() => {
+                hintBtn.style.animation = '';
+                const focusKeys = lessons[currentLevelType][currentLessonIndex].focusKeys;
+                alert(`Focus on these keys: ${focusKeys.join(', ').toUpperCase()}\n\n${lessons[currentLevelType][currentLessonIndex].instruction}`);
+            }, 300);
+        }
+        
+        // Initialize the app when the page loads
+        window.onload = init;
+        // Add these keyboard event handlers to your existing JavaScript
+function handleKeyDown(e) {
+    const key = e.key.toLowerCase();
+    const keyboardKeys = document.querySelectorAll('.keyboard-key');
+    
+    // Remove active class from all keys
+    keyboardKeys.forEach(keyEl => {
+        keyEl.classList.remove('active');
+        keyEl.classList.remove('shift-active');
+    });
+    
+    // Handle Shift key
+    if (e.key === 'Shift') {
+        shiftPressed = true;
+        leftShiftKey.classList.add('shift-active');
+        rightShiftKey.classList.add('shift-active');
+        return;
+    }
+    
+    // Handle Caps Lock
+    if (e.key === 'CapsLock') {
+        capsLock = !capsLock;
+        capsLockKey.classList.toggle('shift-active', capsLock);
+        return;
+    }
+    
+    // Add active class to pressed key
+    if (key === ' ') {
+        document.querySelector('.keyboard-key.space').classList.add('active');
+    } else {
+        const keyEl = Array.from(keyboardKeys).find(
+            el => el.textContent.toLowerCase() === key
+        );
+        if (keyEl) {
+            keyEl.classList.add('active');
+        }
+    }
+}
+
+function handleKeyUp(e) {
+    // Handle Shift key
+    if (e.key === 'Shift') {
+        shiftPressed = false;
+        leftShiftKey.classList.remove('shift-active');
+        rightShiftKey.classList.remove('shift-active');
+    }
+}
+
+// Add these variables to your existing lesson state
+// let shiftPressed = false;
+// let capsLock = false;
+
+// Update your existing startLesson function to include shift instruction
+function startLesson(lessonNumber, level) 
+{
+    currentLevelType = level;
+    currentLessonIndex = lessonNumber - 1;
+    
+    // Show the typing lesson container
+    typingLesson.style.display = 'block';
+    
+    // Scroll to the lesson
+    typingLesson.scrollIntoView({ behavior: 'smooth' });
+    
+    // Set lesson title
+    lessonTitle.textContent = `${currentLessonIndex + 1}. ${lessons[level][currentLessonIndex].title}`;
+    
+    // Set instruction text
+    instructionText.textContent = lessons[level][currentLessonIndex].instruction;
+    
+    // Prepare the text
+    prepareText();
+    
+    // Reset lesson state
+    currentWordIndex = 0;
+    correctChars = 0;
+    totalChars = 0;
+    lessonCompleted = false;
+    
+    // Focus on input
+    typingInput.value = '';
+    typingInput.focus();
+    
+    // Hide result
+    resultDiv.style.display = 'none';
+    
+    // Start timer
+    startTimer();
+}
+        // Add event listeners for Shift and Caps Lock keys
+        leftShiftKey.addEventListener('mousedown', () => {
+            leftShiftKey.classList.add('shift-active');
+        });
+        leftShiftKey.addEventListener('mouseup', () => {
+            leftShiftKey.classList.remove('shift-active');
+        });
+        
+        rightShiftKey.addEventListener('mousedown', () => {
+            rightShiftKey.classList.add('shift-active');
+        });
+        rightShiftKey.addEventListener('mouseup', () => {
+            rightShiftKey.classList.remove('shift-active');
+        });
+        
+        capsLockKey.addEventListener('click', () => {
+            capsLock = !capsLock;
+            capsLockKey.classList.toggle('shift-active', capsLock);
+        });
+        // Advanced level features and functions
+function initAdvancedFeatures() {
+    // Add professional formatting options
+    addFormattingOptions();
+    
+    // Enable advanced error tracking
+    enableAdvancedErrorTracking();
+    
+    // Add certification mode
+    addCertificationMode();
+    
+    // Add specialized keyboard layouts if needed
+    addSpecializedKeyboardLayouts();
+}
+
+function addFormattingOptions() {
+    // Create formatting options panel
+    const formattingPanel = document.createElement('div');
+    formattingPanel.id = 'formatting-options';
+    formattingPanel.style.cssText = 'margin: 15px 0; padding: 10px; background: rgba(255,255,255,0.1); border-radius: 5px;';
+    formattingPanel.innerHTML = `
+        <h3 style="margin-bottom: 10px; color: #a5d6a7;">Formatting Options</h3>
+        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+            <button class="btn btn-secondary" onclick="formatText('bold')"><i class="fas fa-bold"></i> Bold</button>
+            <button class="btn btn-secondary" onclick="formatText('italic')"><i class="fas fa-italic"></i> Italic</button>
+            <button class="btn btn-secondary" onclick="formatText('underline')"><i class="fas fa-underline"></i> Underline</button>
+            <button class="btn btn-secondary" onclick="insertSpecialChar('°')">° Degree</button>
+            <button class="btn btn-secondary" onclick="insertSpecialChar('²')">² Superscript</button>
+            <button class="btn btn-secondary" onclick="insertSpecialChar('₃')">₃ Subscript</button>
+        </div>
+    `;
+    
+    // Insert after the text display
+    const textDisplay = document.getElementById('text-display');
+    textDisplay.parentNode.insertBefore(formattingPanel, textDisplay.nextSibling);
+}
+
+function formatText(formatType) {
+    const input = document.getElementById('typing-input');
+    const startPos = input.selectionStart;
+    const endPos = input.selectionEnd;
+    const selectedText = input.value.substring(startPos, endPos);
+    
+    let formattedText = '';
+    switch(formatType) {
+        case 'bold':
+            formattedText = `**${selectedText}**`;
+            break;
+        case 'italic':
+            formattedText = `_${selectedText}_`;
+            break;
+        case 'underline':
+            formattedText = `__${selectedText}__`;
+            break;
+        default:
+            return;
+    }
+    
+    input.value = input.value.substring(0, startPos) + formattedText + input.value.substring(endPos);
+    input.focus();
+    input.setSelectionRange(startPos + formattedText.length, startPos + formattedText.length);
+}
+
+function insertSpecialChar(char) {
+    const input = document.getElementById('typing-input');
+    const startPos = input.selectionStart;
+    
+    input.value = input.value.substring(0, startPos) + char + input.value.substring(startPos);
+    input.focus();
+    input.setSelectionRange(startPos + char.length, startPos + char.length);
+}
+
+function enableAdvancedErrorTracking() {
+    // Track errors by category (capitalization, punctuation, spelling, etc.)
+    window.advancedErrors = {
+        capitalization: 0,
+        punctuation: 0,
+        spelling: 0,
+        formatting: 0
+    };
+    
+    // Override the existing error tracking
+    const originalHandleTyping = handleTyping;
+    
+    window.handleTyping = function() {
+        if (lessonCompleted) return;
+        
+        const input = typingInput.value;
+        const words = lessons[currentLevelType][currentLessonIndex].text.split(' ');
+        const currentWord = words[currentWordIndex];
+        
+        // Update stats
+        totalChars++;
+        if (input === currentWord.substring(0, input.length)) {
+            correctChars++;
+        } else {
+            // Advanced error tracking
+            trackAdvancedError(input, currentWord);
+        }
+        
+        const accuracy = Math.round((correctChars / totalChars) * 100);
+        accuracyDisplay.textContent = `${accuracy}%`;
+        
+        // Check if word is completed
+        if (input === currentWord + ' ' || input === currentWord) {
+            // Move to next word
+            currentWordIndex++;
+            
+            // Check if lesson is completed
+            if (currentWordIndex >= words.length) {
+                completeLesson();
+                showErrorReport();
+                return;
+            }
+            
+            // Update display
+            const wordSpans = textDisplay.querySelectorAll('span');
+            wordSpans.forEach((span, index) => {
+                span.classList.remove('current-word');
+                if (index === currentWordIndex) {
+                    span.classList.add('current-word');
+                }
+            });
+            
+            // Clear input
+            typingInput.value = '';
+        }
+    };
+}
+
+function trackAdvancedError(input, correctWord) {
+    // Simple error categorization (in a real implementation, this would be more sophisticated)
+    if (input.toLowerCase() === correctWord.toLowerCase()) {
+        // Case error (capitalization)
+        advancedErrors.capitalization++;
+    } else if (/[^\w\s]/.test(correctWord) && input.replace(/[^\w\s]/g, '') === correctWord.replace(/[^\w\s]/g, '')) {
+        // Punctuation error
+        advancedErrors.punctuation++;
+    } else if (input.length === correctWord.length && calculateLevenshteinDistance(input, correctWord) <= 2) {
+        // Spelling error (close but not exact)
+        advancedErrors.spelling++;
+    } else {
+        // Other error types
+        advancedErrors.formatting++;
+    }
+}
+
+function calculateLevenshteinDistance(a, b) {
+    // Simple Levenshtein distance calculation for spelling error detection
+    if (a.length === 0) return b.length;
+    if (b.length === 0) return a.length;
+    
+    const matrix = [];
+    
+    for (let i = 0; i <= b.length; i++) {
+        matrix[i] = [i];
+    }
+    
+    for (let j = 0; j <= a.length; j++) {
+        matrix[0][j] = j;
+    }
+    
+    for (let i = 1; i <= b.length; i++) {
+        for (let j = 1; j <= a.length; j++) {
+            if (b.charAt(i-1) === a.charAt(j-1)) {
+                matrix[i][j] = matrix[i-1][j-1];
+            } else {
+                matrix[i][j] = Math.min(
+                    matrix[i-1][j-1] + 1, // substitution
+                    matrix[i][j-1] + 1,   // insertion
+                    matrix[i-1][j] + 1    // deletion
+                );
+            }
+        }
+    }
+    
+    return matrix[b.length][a.length];
+}
+
+function showErrorReport() {
+    const errorReport = document.createElement('div');
+    errorReport.id = 'error-report';
+    errorReport.style.cssText = 'margin: 20px 0; padding: 15px; background: rgba(255,255,255,0.1); border-radius: 5px;';
+    
+    let html = '<h3 style="color: #a5d6a7; margin-bottom: 10px;">Error Analysis Report</h3>';
+    html += '<div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;">';
+    html += `<div>Capitalization Errors: <span style="color: #ff5722;">${advancedErrors.capitalization}</span></div>`;
+    html += `<div>Punctuation Errors: <span style="color: #ff5722;">${advancedErrors.punctuation}</span></div>`;
+    html += `<div>Spelling Errors: <span style="color: #ff5722;">${advancedErrors.spelling}</span></div>`;
+    html += `<div>Formatting Errors: <span style="color: #ff5722;">${advancedErrors.formatting}</span></div>`;
+    html += '</div>';
+    
+    errorReport.innerHTML = html;
+    
+    // Insert before the result div
+    const resultDiv = document.getElementById('result');
+    resultDiv.parentNode.insertBefore(errorReport, resultDiv);
+}
+
+function addCertificationMode() {
+    // Add certification mode with stricter requirements
+    const certificationBtn = document.createElement('button');
+    certificationBtn.textContent = 'Certification Mode';
+    certificationBtn.className = 'btn btn-primary';
+    certificationBtn.id = 'certification-btn';
+    certificationBtn.onclick = enableCertificationMode;
+    
+    // Add to controls if it doesn't exist yet
+    if (!document.getElementById('certification-btn')) {
+        document.querySelector('.controls').appendChild(certificationBtn);
+    }
+}
+
+function enableCertificationMode() {
+    // Set certification requirements
+    const minWPM = 80;
+    const minAccuracy = 98;
+    
+    // Update the completion function to check certification requirements
+    const originalCompleteLesson = completeLesson;
+    
+    window.completeLesson = function() {
+        originalCompleteLesson();
+        
+        // Check if certification requirements are met
+        const wpm = parseInt(finalWpm.textContent);
+        const accuracy = parseInt(finalAccuracy.textContent);
+        
+        if (wpm >= minWPM && accuracy >= minAccuracy) {
+            // Certification passed
+            showCertificationSuccess();
+        } else {
+            // Certification failed
+            showCertificationFailure(wpm, accuracy, minWPM, minAccuracy);
+        }
+    };
+    
+    // Change button to indicate active certification mode
+    const certBtn = document.getElementById('certification-btn');
+    certBtn.textContent = 'Certification Mode (Active)';
+    certBtn.classList.add('active-certification');
+    
+    // Show certification requirements
+    alert(`Certification mode activated!\nRequirements: ${minWPM} WPM and ${minAccuracy}% accuracy`);
+}
+
+function showCertificationSuccess() {
+    const certDiv = document.createElement('div');
+    certDiv.id = 'certification-success';
+    certDiv.style.cssText = 'text-align: center; margin: 20px 0; padding: 20px; background: rgba(76, 175, 80, 0.2); border-radius: 10px;';
+    certDiv.innerHTML = `
+        <h2 style="color: #4caf50;"><i class="fas fa-trophy"></i> Certification Passed!</h2>
+        <p>Congratulations! You've demonstrated advanced typing proficiency.</p>
+        <button class="btn btn-primary" onclick="printCertificate()"><i class="fas fa-print"></i> Print Certificate</button>
+    `;
+    
+    // Insert after the result div
+    const resultDiv = document.getElementById('result');
+    resultDiv.parentNode.insertBefore(certDiv, resultDiv.nextSibling);
+}
+
+function showCertificationFailure(wpm, accuracy, minWPM, minAccuracy) {
+    const certDiv = document.createElement('div');
+    certDiv.id = 'certification-failure';
+    certDiv.style.cssText = 'text-align: center; margin: 20px 0; padding: 20px; background: rgba(255, 87, 34, 0.2); border-radius: 10px;';
+    certDiv.innerHTML = `
+        <h2 style="color: #ff5722;"><i class="fas fa-times-circle"></i> Certification Not Achieved</h2>
+        <p>Your results: ${wpm} WPM, ${accuracy}% accuracy</p>
+        <p>Requirements: ${minWPM} WPM, ${minAccuracy}% accuracy</p>
+        <p>Keep practicing to improve your skills!</p>
+    `;
+    
+    // Insert after the result div
+    const resultDiv = document.getElementById('result');
+    resultDiv.parentNode.insertBefore(certDiv, resultDiv.nextSibling);
+}
+
+function printCertificate() {
+    // This would open a print-friendly certificate in a real implementation
+    alert("Certificate printing functionality would be implemented here");
+}
+
+function addSpecializedKeyboardLayouts() {
+    // Add option to switch to specialized keyboard layouts
+    const layoutSelector = document.createElement('select');
+    layoutSelector.id = 'keyboard-layout';
+    layoutSelector.style.cssText = 'padding: 8px; border-radius: 5px; background: #333; color: white; border: none; margin-left: 10px;';
+    layoutSelector.innerHTML = `
+        <option value="standard">Standard QWERTY</option>
+        <option value="programmer">Programmer Layout</option>
+        <option value="numeric">Numeric Keypad</option>
+    `;
+    layoutSelector.onchange = changeKeyboardLayout;
+    
+    // Add to controls
+    const controls = document.querySelector('.controls');
+    controls.appendChild(layoutSelector);
+}
+
+function changeKeyboardLayout() {
+    const layout = document.getElementById('keyboard-layout').value;
+    
+    // This would change the virtual keyboard layout in a real implementation
+    switch(layout) {
+        case 'programmer':
+            alert("Programmer layout activated (special symbols emphasized)");
+            break;
+        case 'numeric':
+            alert("Numeric keypad layout activated");
+            break;
+        default:
+            alert("Standard QWERTY layout activated");
+    }
+}
+
+// Call this function when advanced tab is selected or advanced lesson is started
+function onAdvancedLevelSelected() {
+    initAdvancedFeatures();
+}
+    </script>
+</body>
+</html>
