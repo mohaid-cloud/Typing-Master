@@ -703,6 +703,234 @@
     margin-left: 10px;
 }
 
+.test-info {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .info-box {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            flex: 1;
+        }
+        
+        .info-value {
+            font-size: 24px;
+            font-weight: bold;
+            color: #a74cafbe;
+            margin: 5px 0;
+        }
+        
+        .info-label {
+            font-size: 14px;
+            color: #a5d6a7;
+        }
+        
+        .text-display {
+            background-color: rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            border-radius: 8px;
+            font-size: 22px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            min-height: 150px;
+        }
+        
+        .typed-correct {
+            color: #4caf50;
+        }
+        
+        .typed-incorrect {
+            color: #ff5722;
+            text-decoration: underline;
+        }
+        
+        .current-char {
+            background-color: #a74cafbe;
+            padding: 2px 0;
+            border-radius: 2px;
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            0% { background-color: #a74cafbe; }
+            50% { background-color: rgba(167, 76, 175, 0.5); }
+            100% { background-color: #a74cafbe; }
+        }
+        
+        .input-area {
+            margin-bottom: 20px;
+        }
+        
+        #typing-input {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            background-color: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        #typing-input:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.5);
+            transform: translateY(-2px);
+        }
+        
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-primary {
+            background-color: #a74cafbe;
+            color: white;
+        }
+        
+        .btn-secondary {
+            background-color: transparent;
+            border: 2px solid #a74cafbe;
+            color: whitesmoke;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 14px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn:active {
+            transform: translateY(1px);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        .result {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            display: none;
+        }
+        
+        .result h2 {
+            margin-bottom: 15px;
+            color: #a5d6a7;
+        }
+        
+        .result-stats {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px 0;
+        }
+        
+        .stat {
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 32px;
+            font-weight: bold;
+            color: #a74cafbe;
+        }
+        
+        .stat-label {
+            font-size: 16px;
+            color: #a5d6a7;
+        }
+        
+        .keyboard {
+            margin-top: 30px;
+            background-color: rgba(0, 0, 0, 0.3);
+            padding: 15px;
+            border-radius: 10px;
+        }
+        
+        .keyboard-row {
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+            margin-bottom: 5px;
+        }
+        
+        .keyboard-key {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #333;
+            color: white;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: all 0.1s ease;
+            box-shadow: 0 4px 0 #222;
+        }
+        
+        .keyboard-key:active {
+            transform: translateY(4px);
+            box-shadow: 0 0 0 #222;
+        }
+        
+        .keyboard-key.space {
+            width: 300px;
+        }
+        
+        .keyboard-key.active {
+            background-color: #a74cafbe;
+            transform: translateY(4px);
+            box-shadow: 0 0 0 #222;
+        }
+        
+        @media (max-width: 768px) {
+            .test-info {
+                flex-wrap: wrap;
+            }
+            
+            .info-box {
+                flex: 1 0 40%;
+                margin-bottom: 10px;
+            }
+            
+            .text-display {
+                font-size: 18px;
+            }
+            
+            .keyboard-key {
+                width: 30px;
+                height: 30px;
+                font-size: 12px;
+            }
+            
+            .keyboard-key.space {
+                width: 150px;
+            }
+            
+            .result-stats {
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+            
+            .stat {
+                flex: 1 0 40%;
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -739,6 +967,7 @@
             <div class="tab active" data-tab="beginner">Beginner</div>
             <div class="tab" data-tab="intermediate">Intermediate</div>
             <div class="tab" data-tab="advanced">Advanced</div>
+             <div class="tab" data-tab="Test">Test</div>
         </div>
         
         <!-- Beginner Content -->
@@ -1017,6 +1246,56 @@
             </div>
         </div>
         
+             <div class="test-info">
+            <div class="info-box">
+                <div class="info-value" id="wpm">0</div>
+                <div class="info-label">WPM</div>
+            </div>
+            <div class="info-box">
+                <div class="info-value" id="accuracy">100%</div>
+                <div class="info-label">Accuracy</div>
+            </div>
+            <div class="info-box">
+                <div class="info-value" id="timer">60</div>
+                <div class="info-label">Time Left</div>
+            </div>
+            <div class="info-box">
+                <div class="info-value" id="errors">0</div>
+                <div class="info-label">Errors</div>
+            </div>
+        </div>
+        
+        <div class="text-display" id="text-display">
+            <!-- Text to type will be inserted here -->
+        </div>
+        
+        <div class="input-area">
+            <input type="text" id="typing-input" placeholder="Click here and start typing...">
+        </div>
+        
+        <div class="controls">
+            <button class="btn btn-primary" id="restart-btn"><i class="fas fa-redo"></i> Restart</button>
+            <button class="btn btn-secondary" id="new-text-btn"><i class="fas fa-sync"></i> New Test</button>
+        </div>
+        
+        <div class="result" id="result">
+            <h2><i class="fas fa-trophy"></i> Test Completed!</h2>
+            <div class="result-stats">
+                <div class="stat">
+                    <div class="stat-value" id="final-wpm">0</div>
+                    <div class="stat-label">WPM</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value" id="final-accuracy">100%</div>
+                    <div class="stat-label">Accuracy</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value" id="final-errors">0</div>
+                    <div class="stat-label">Errors</div>
+                </div>
+            </div>
+            <button class="btn btn-primary" id="try-again-btn"><i class="fas fa-undo"></i> Try Again</button>
+        </div>
         
         <!-- Typing Lesson Container -->
         <div class="typing-lesson" id="typing-lesson">
@@ -1424,18 +1703,216 @@
             ]
         };
         
+         // Sample texts for typing
+        const sampleTexts = [
+            "The quick brown fox jumps over the lazy dog. This sentence contains all letters of the English alphabet.",
+            "Programming is the process of creating a set of instructions that tell a computer how to perform a task.",
+            "Typing quickly and accurately is an essential skill for programmers, writers, and many other professionals.",
+            "The beautiful sunset filled the sky with a brilliant array of colors, creating a breathtaking view for everyone.",
+            "Learning to type quickly and accurately will save you time and increase your productivity in the long run.",
+            "The mysterious package contained an ancient artifact that would change the course of history forever.",
+            "Effective communication skills are essential in both personal and professional relationships throughout life.",
+            "The chef carefully measured each ingredient to ensure the recipe would turn out perfectly delicious.",
+            "Modern technology has transformed how we work, communicate, and access information in our daily lives.",
+            "The explorer ventured deep into the uncharted jungle, discovering species that had never been documented before."
+        ];
+    // DOM elements
+        const textDisplay = document.getElementById('text-display');
+        const typingInput = document.getElementById('typing-input');
+        const restartBtn = document.getElementById('restart-btn');
+        const newTextBtn = document.getElementById('new-text-btn');
+        const tryAgainBtn = document.getElementById('try-again-btn');
+        const resultDiv = document.getElementById('result');
+        
+        const wpmElement = document.getElementById('wpm');
+        const accuracyElement = document.getElementById('accuracy');
+        const timerElement = document.getElementById('timer');
+        const errorsElement = document.getElementById('errors');
+        
+        const finalWpmElement = document.getElementById('final-wpm');
+        const finalAccuracyElement = document.getElementById('final-accuracy');
+        const finalErrorsElement = document.getElementById('final-errors');
+        
+        const keyboardKeys = document.querySelectorAll('.keyboard-key');
+
+        // Initialize the test
+        function initTest() {
+            // Select a random text
+            currentText = sampleTexts[Math.floor(Math.random() * sampleTexts.length)];
+            
+            // Display the text with highlighting
+            textDisplay.innerHTML = '';
+            for (let i = 0; i < currentText.length; i++) {
+                const charSpan = document.createElement('span');
+                charSpan.textContent = currentText[i];
+                textDisplay.appendChild(charSpan);
+            }
+            
+            // Reset variables
+            currentIndex = 0;
+            errors = 0;
+            timeLeft = 60;
+            testActive = false;
+            
+            // Update UI
+            updateUI();
+            textDisplay.children[0].classList.add('current-char');
+            
+            // Clear input and focus
+            typingInput.value = '';
+            typingInput.disabled = false;
+            typingInput.focus();
+            
+            // Hide results
+            resultDiv.style.display = 'none';
+        }
+
+        // Update the UI with current stats
+        function updateUI() {
+            wpmElement.textContent = calculateWPM();
+            accuracyElement.textContent = calculateAccuracy();
+            timerElement.textContent = timeLeft;
+            errorsElement.textContent = errors;
+        }
+
+        // Calculate WPM (Words Per Minute)
+        function calculateWPM() {
+            if (!startTime) return 0;
+            
+            const timeElapsed = (Date.now() - startTime) / 1000 / 60; // in minutes
+            const wordsTyped = currentIndex / 5; // assuming 5 characters per word
+            
+            return Math.round(wordsTyped / timeElapsed);
+        }
+
+        // Calculate accuracy percentage
+        function calculateAccuracy() {
+            if (currentIndex === 0) return 100;
+            
+            return Math.max(0, Math.round(((currentIndex - errors) / currentIndex) * 100));
+        }
+
+        // Start the test timer
+        function startTimer() {
+            startTime = Date.now();
+            testActive = true;
+            
+            timerInterval = setInterval(() => {
+                timeLeft--;
+                timerElement.textContent = timeLeft;
+                
+                if (timeLeft <= 0) {
+                    finishTest();
+                }
+            }, 1000);
+        }
+
+        // Finish the test
+        function finishTest() {
+            clearInterval(timerInterval);
+            testActive = false;
+            typingInput.disabled = true;
+            
+            // Update final stats
+            finalWpmElement.textContent = calculateWPM();
+            finalAccuracyElement.textContent = calculateAccuracy() + '%';
+            finalErrorsElement.textContent = errors;
+            
+            // Show results
+            resultDiv.style.display = 'block';
+        }
+
+        // Handle typing input
+        function handleTyping() {
+            // Start timer on first keystroke
+            if (!testActive && currentIndex === 0) {
+                startTimer();
+            }
+            
+            const inputVal = typingInput.value;
+            
+            if (currentIndex < currentText.length) {
+                // Check if current character is correct
+                if (inputVal[currentIndex] === currentText[currentIndex]) {
+                    textDisplay.children[currentIndex].classList.add('typed-correct');
+                    textDisplay.children[currentIndex].classList.remove('typed-incorrect');
+                } else {
+                    textDisplay.children[currentIndex].classList.add('typed-incorrect');
+                    textDisplay.children[currentIndex].classList.remove('typed-correct');
+                    errors++;
+                }
+                
+                // Remove current character highlight
+                textDisplay.children[currentIndex].classList.remove('current-char');
+                
+                // Move to next character
+                currentIndex++;
+                
+                // Add highlight to next character
+                if (currentIndex < currentText.length) {
+                    textDisplay.children[currentIndex].classList.add('current-char');
+                }
+                
+                // Update UI
+                updateUI();
+                
+                // Check if text is completed
+                if (currentIndex === currentText.length) {
+                    finishTest();
+                }
+            }
+        }
+
+        // Highlight pressed key on virtual keyboard
+        function highlightKey(key) {
+            const keyElement = Array.from(keyboardKeys).find(
+                el => el.textContent.toLowerCase() === key.toLowerCase()
+            );
+            
+            if (keyElement) {
+                keyElement.classList.add('active');
+                setTimeout(() => {
+                    keyElement.classList.remove('active');
+                }, 100);
+            }
+        }
+
+        // Event listeners
+        typingInput.addEventListener('input', handleTyping);
+        
+        restartBtn.addEventListener('click', () => {
+            clearInterval(timerInterval);
+            initTest();
+        });
+        
+        newTextBtn.addEventListener('click', () => {
+            clearInterval(timerInterval);
+            initTest();
+        });
+        
+        tryAgainBtn.addEventListener('click', () => {
+            resultDiv.style.display = 'none';
+            initTest();
+        });
+        
+        typingInput.addEventListener('keydown', (e) => {
+            if (e.key.length === 1) {
+                highlightKey(e.key);
+            } else if (e.key === ' ') {
+                highlightKey('space');
+            }
+        });
+
+        // Initialize the test when page loads
+        window.onload = initTest;
         
         // DOM elements
         const typingLesson = document.getElementById('typing-lesson');
         const lessonTitle = document.getElementById('lesson-title');
-        const textDisplay = document.getElementById('text-display');
-        const typingInput = document.getElementById('typing-input');
         const accuracyDisplay = document.getElementById('accuracy');
         const wpmDisplay = document.getElementById('wpm');
         const timeDisplay = document.getElementById('time');
-        const restartBtn = document.getElementById('restart-btn');
         const backBtn = document.getElementById('back-btn');
-        const resultDiv = document.getElementById('result');
         const finalAccuracy = document.getElementById('final-accuracy');
         const finalWpm = document.getElementById('final-wpm');
         const nextLessonBtn = document.getElementById('next-lesson-btn');
@@ -1449,6 +1926,14 @@
         const leftShiftKey = document.getElementById('left-shift');
         const rightShiftKey = document.getElementById('right-shift');
         const capsLockKey = document.getElementById('caps-lock');
+
+          // Test state variables
+        let currentText = '';
+        let currentIndex = 0;
+        let errors = 0;
+        let timeLeft = 60;
+        let testActive = false;
+
         
         // Lesson state
         let currentLevelType = 'beginner';
